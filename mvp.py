@@ -6,6 +6,7 @@ Takes in two words and finds the words that ryhme
 
 import requests
 import sys
+import itertools
 from PyDictionary import PyDictionary
 
 dictionary=PyDictionary()
@@ -16,13 +17,17 @@ word_1 = 'shirt'
 word_2 = 'histogram'
 
 def _main():
-    synonyms_1 = synonyms(word_1) + word_1
-    synonyms_2 = synonyms(word_2) + word_2
+    synonyms_1 = synonyms(word_1) + [word_1]
+    synonyms_2 = synonyms(word_2) + [word_2]
 
     rhymes_1 = [rhyme_words(word) for word in synonyms_1]
+    rhymes_1 = list(itertools.chain(*rhymes_1))
+    print(len(rhymes_1))
     rhymes_2 = [rhyme_words(word) for word in synonyms_2]
 
     print(rhymes_1)
+
+    r
 
     # print(rhymes_2)
     # print(rhymes_1)
@@ -36,9 +41,19 @@ def _main():
     #         print(r1, r2)
     # print("Valid Rhmes are:".format(valid_rhymes))
 
-def synonyms(word):
-    synonym_list = dictionary.synonym(word)
-    return synonym_list
+
+def generate_rhymes_list(word):
+    """
+
+    :param word:
+    :return:
+    """
+    synonyms = dictionary.synonym(word) + [word]
+    rhymes = [rhyme_words(word) for word in synonyms]
+    rhymes = list(itertools.chain(*rhymes))
+
+    return rhymes
+
 
 def phoneme_dictionary():
     """
@@ -70,8 +85,12 @@ def rhyme_words(word):
     rhyme_list = []
     for key, phoneme in phoneme_dict.items():
         if key != word_uc:
-            if phoneme.split()[-2:] == phoneme_dict[word_uc].split()[-2:]:
-                rhyme_list.append(key)
+            try:
+                if phoneme.split()[-2:] == phoneme_dict[word_uc].split()[-2:]:
+                    rhyme_list.append(key)
+            except KeyError:
+                print("{} not found".format(key))
+                continue
     return rhyme_list
 
 
