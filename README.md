@@ -5,5 +5,5 @@ End Goal: Dr. Seussify a block of textx
 First Iteration: Rearrange and remake sentences so that they rhyme with another sentence
 
 # Reproducing
-1. Make a new enviornment `conda create --name spotify_poetry python=2.7
-2. source activate spotify_poetry
+1. Copy the enviornment `conda env create -f environment.yml`
+2. `. activate spotify_poetry`
