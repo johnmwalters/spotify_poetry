@@ -1,5 +1,0 @@
-# This file may be used to create an environment using:
-# $ conda create --name <env> --file <this file>
-# platform: osx-64
-ipython-notebook=4.0.4=py27_0
-text-unidecode=1.0=py27_0
