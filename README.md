@@ -1,7 +1,7 @@
 # spotify_poetry
 This repo is the result of an 8 hour Hackathon at Spotify. 
 
-End Goal: Dr. Seussify a block of textx
+End Goal: Dr. Seussify a block of text
 First Iteration: Rearrange and remake sentences so that they rhyme with another sentence
 
 # Reproducing
