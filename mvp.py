@@ -6,26 +6,39 @@ Takes in two words and finds the words that ryhme
 
 import requests
 import sys
-import fileinput
+from PyDictionary import PyDictionary
+
+dictionary=PyDictionary()
+
+
 
 word_1 = 'shirt'
 word_2 = 'histogram'
 
 def _main():
-    rhymes_1 = rhyme_words(word_1)
-    rhymes_2 = rhyme_words(word_2)
-    print(rhymes_2)
-    print(rhymes_1)
-    if len(rhymes_1) < 0 or len(rhymes_2) < 0:
-        assert ValueError("One word has no rymes")
-    valid_rhymes = []
-    for r1 in rhymes_1:
-        for r2 in rhymes_2:
-            if r2 in r1:
-                valid_rhymes.append((r1, r2))
-            print(r1, r2)
-    print("Valid Rhmes are:".format(valid_rhymes))
+    synonyms_1 = synonyms(word_1) + word_1
+    synonyms_2 = synonyms(word_2) + word_2
 
+    rhymes_1 = [rhyme_words(word) for word in synonyms_1]
+    rhymes_2 = [rhyme_words(word) for word in synonyms_2]
+
+    print(rhymes_1)
+
+    # print(rhymes_2)
+    # print(rhymes_1)
+    # if len(rhymes_1) < 0 or len(rhymes_2) < 0:
+    #     assert ValueError("One word has no rymes")
+    # valid_rhymes = []
+    # for r1 in rhymes_1:
+    #     for r2 in rhymes_2:
+    #         if r2 in r1:
+    #             valid_rhymes.append((r1, r2))
+    #         print(r1, r2)
+    # print("Valid Rhmes are:".format(valid_rhymes))
+
+def synonyms(word):
+    synonym_list = dictionary.synonym(word)
+    return synonym_list
 
 def phoneme_dictionary():
     """
